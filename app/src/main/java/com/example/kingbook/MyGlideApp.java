@@ -1,4 +1,4 @@
-package com.example.lasbetalk;
+package com.example.kingbook;
 
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;

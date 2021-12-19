@@ -1,4 +1,4 @@
-package com.example.lasbetalk.fragment
+package com.example.kingbook.fragment
 
 import android.content.Context
 import android.content.Intent
@@ -19,9 +19,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.lasbetalk.R
-//import com.example.lasbetalk.database
-import com.example.lasbetalk.model.Friend
+import com.example.kingbook.R
+import com.example.kingbook.model.Friend
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

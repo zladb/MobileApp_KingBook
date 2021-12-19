@@ -1,4 +1,4 @@
-package com.example.lasbetalk.fragment
+package com.example.kingbook.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.lasbetalk.MessageActivity
-import com.example.lasbetalk.model.Friend
-import com.example.lasbetalk.R
-import com.google.firebase.auth.ktx.auth
+import com.example.kingbook.BookActivity
+import com.example.kingbook.R
+import com.example.kingbook.model.Book
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -31,7 +30,7 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var database: DatabaseReference
-    private var friend : ArrayList<Friend> = arrayListOf()
+    private var books : ArrayList<Book> = arrayListOf()
 
     //메모리에 올라갔을 때
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,47 +63,66 @@ class HomeFragment : Fragment() {
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder>() {
 
         init {
-            val myUid = Firebase.auth.currentUser?.uid.toString()
-            FirebaseDatabase.getInstance().reference.child("users").addValueEventListener(object : ValueEventListener {
+            // 랭크 정보 받아오기 (※여기서 날짜 조정 해야함)
+            FirebaseDatabase.getInstance().reference.child("RANK/1208").addValueEventListener(object : ValueEventListener {
+
                 override fun onCancelled(error: DatabaseError) {
                 }
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    friend.clear()
+                    books.clear()
+
+                    // rank에서 책 정보 받아오기
                     for(data in snapshot.children){
-                        val item = data.getValue<Friend>()
-                        if(item?.uid.equals(myUid)) { continue } // 본인은 친구창에서 제외
-                        friend.add(item!!)
+                        val item = data.getValue<Book>()
+                        books.add(item!!)
                     }
                     notifyDataSetChanged()
                 }
             })
         }
+
+        // 뷰 홀더 생성
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
             return CustomViewHolder(LayoutInflater.from(context).inflate(R.layout.item_home, parent, false))
         }
 
+        // 뷰 홀더 속성
         inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val imageView: ImageView = itemView.findViewById(R.id.home_item_iv)
             val textView : TextView = itemView.findViewById(R.id.home_item_tv)
-            val textViewEmail : TextView = itemView.findViewById(R.id.home_item_email)
+            val textViewRank : TextView = itemView.findViewById(R.id.home_item_rank)
+            val textViewAuthor : TextView = itemView.findViewById(R.id.home_item_au) //작가
         }
 
+        // 뷰 홀더 내용
         override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-            Glide.with(holder.itemView.context).load(friend[position].profileImageUrl)
-                .apply(RequestOptions().circleCrop())
+            // 책 사진 출력
+            Glide.with(holder.itemView.context).load(books[position].image)
+                .apply(RequestOptions())
                 .into(holder.imageView)
-            holder.textView.text = friend[position].name
-            holder.textViewEmail.text = friend[position].email
 
+            // 랭크
+            holder.textViewRank.text = books[position].rank.toString()
+
+            // 책 타이틀
+            holder.textView.text = books[position].title
+
+            // 작가 목록
+            holder.textViewAuthor.text = books[position].author
+
+            // 클릭 시 bookISBN을 담아서 MessageActivity로 넘어감
             holder.itemView.setOnClickListener{
-                val intent = Intent(context, MessageActivity::class.java)
-                intent.putExtra("destinationUid", friend[position].uid)
+                val intent = Intent(context, BookActivity::class.java)
+                // book으로 채팅 슉
+                // BookActivity로 book index 전달
+                intent.putExtra("book_index", position.toString())
+                intent.putExtra("book_isbn", books[position].ISBN.toString())
                 context?.startActivity(intent)
             }
         }
 
         override fun getItemCount(): Int {
-            return friend.size
+            return books.size
         }
     }
 }

@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.LasbeTalk" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/lasbeOrange</item>
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryVariant">#2e2e2e</item>   // 상태바
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/lasbeOrange</item>
@@ -13,4 +13,6 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.LasbeTalk.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 </resources>

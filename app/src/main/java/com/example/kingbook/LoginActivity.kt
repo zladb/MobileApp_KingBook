@@ -1,7 +1,6 @@
-package com.example.lasbetalk
+package com.example.kingbook
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 
@@ -9,11 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
-import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.example.lasbetalk.fragment.HomeFragment
-import com.example.lasbetalk.model.Friend
+import com.example.kingbook.model.Friend
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -29,8 +26,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_message.*
-import kotlinx.android.synthetic.main.activity_splash.*
 import java.io.ByteArrayOutputStream
 
 class LoginActivity: AppCompatActivity() {
@@ -40,6 +35,7 @@ class LoginActivity: AppCompatActivity() {
     private var googleSignInClient : GoogleSignInClient? = null
     private var GOOGLE_LOGIN_CODE = 9001
     lateinit var intentMain: Intent
+    var waitTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,9 +93,8 @@ class LoginActivity: AppCompatActivity() {
             // 구글 로그인 실패
             else
             {
-                val intent = Intent(this, MessageActivity::class.java)
-                startActivity(intent)
-                /////finish()
+
+                finish()
                 Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
             }
         }
@@ -125,8 +120,6 @@ class LoginActivity: AppCompatActivity() {
                     Log.d("g.email", "$email")
                     Log.d("g.photo", "$imageUrl")
                     Log.d("g.id", "$user_uid")
-
-                  // lateinit var data: ByteArray
 
                    GlideApp.with(this)
                         .asBitmap()
@@ -200,7 +193,13 @@ class LoginActivity: AppCompatActivity() {
     private fun reload() {
 
     }
-
-
+    override fun onBackPressed(){
+        if(System.currentTimeMillis() - waitTime >= 1500){
+            waitTime = System.currentTimeMillis()
+            Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 종료됩니다", Toast.LENGTH_SHORT).show()
+        }else{
+            finish()
+        }
+    }
 }
 

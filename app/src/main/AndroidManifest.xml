@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lasbetalk">
+    package="com.example.kingbook">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,11 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LasbeTalk">
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".MessageActivity"/>
-        <activity android:name=".RegistrationActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.example.kingbook.MainActivity"/>
+        <activity android:name="com.example.kingbook.MessageActivity"/>
+        <activity android:name="com.example.kingbook.BookActivity"/>
+        <activity android:name="com.example.kingbook.LoginActivity"/>
+        <activity android:name="com.example.kingbook.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

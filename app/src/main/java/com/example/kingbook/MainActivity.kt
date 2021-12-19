@@ -1,10 +1,11 @@
-package com.example.lasbetalk
+package com.example.kingbook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.lasbetalk.fragment.ChatFragment
-import com.example.lasbetalk.fragment.HomeFragment
-import com.example.lasbetalk.fragment.ProfileFragment
+import android.widget.Toast
+import com.example.kingbook.fragment.ChatFragment
+import com.example.kingbook.fragment.HomeFragment
+import com.example.kingbook.fragment.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -46,6 +47,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
         true
+    }
+    var waitTime = 0L
+    override fun onBackPressed(){
+        if(System.currentTimeMillis() - waitTime >= 1500){
+            waitTime = System.currentTimeMillis()
+            Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 종료됩니다", Toast.LENGTH_SHORT).show()
+        }else{
+            finish()
+        }
     }
 
 

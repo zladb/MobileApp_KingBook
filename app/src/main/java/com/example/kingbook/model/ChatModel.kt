@@ -1,4 +1,4 @@
-package com.example.lasbetalk.model
+package com.example.kingbook.model
 
 import kotlin.collections.HashMap
 

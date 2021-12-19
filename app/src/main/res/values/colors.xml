@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lasbeOrange">#FFFF9800</color>
+    <color name="colorGyull">#FF9731</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

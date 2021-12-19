@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
+    android:background="@drawable/border_layout"
     android:orientation="horizontal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="10dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/home_item_iv"
@@ -25,38 +29,55 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+
             android:src="@drawable/user"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/home_item_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="4dp"
-            android:text="이름"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/home_item_email"
-            app:layout_constraintStart_toEndOf="@+id/home_item_iv"
-            app:layout_constraintTop_toTopOf="@+id/home_item_iv" />
-
-        <TextView
-            android:id="@+id/home_item_email"
+            android:id="@+id/home_item_rank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginLeft="26dp"
-            android:layout_marginTop="6dp"
-            android:text="이메일"
+            android:layout_marginBottom="4dp"
+            android:text="랭크"
             android:textColor="#8A252525"
+            app:layout_constraintBottom_toTopOf="@+id/home_item_tv"
+            app:layout_constraintStart_toEndOf="@+id/home_item_iv"
+            app:layout_constraintTop_toTopOf="@+id/home_item_iv" />
+
+        <TextView
+            android:id="@+id/home_item_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="이름"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/home_item_au"
+            app:layout_constraintStart_toStartOf="@+id/home_item_au"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_item_rank" />
+
+        <TextView
+            android:id="@+id/home_item_au"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="4dp"
+            android:text="작가"
+            android:textColor="#8A252525"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/home_item_iv"
             app:layout_constraintStart_toEndOf="@+id/home_item_iv"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_item_tv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

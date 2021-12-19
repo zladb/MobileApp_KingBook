@@ -1,4 +1,4 @@
-package com.example.lasbetalk
+package com.example.kingbook
 
 import org.junit.Test
 

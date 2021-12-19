@@ -3,16 +3,16 @@
     <item
         android:id="@+id/menu_home"
         android:title="홈"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ic_home_menu"
         />
     <item
         android:id="@+id/menu_chat"
-        android:title="채팅"
-        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="토론방"
+        android:icon="@drawable/ic_chat_menu"
         />
     <item
         android:id="@+id/menu_profile"
         android:title="프로필"
-        android:icon="@drawable/ic_baseline_account_box_24"
+        android:icon="@drawable/ic_mypage_menu"
         />
 </menu>
